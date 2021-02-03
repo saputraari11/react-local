@@ -127,22 +127,32 @@ class cart extends React.Component{
                         temp.map(e=>{
                             return total+=(e.jumlah*e.harga);
                         })
+                        this.setState({total:total})
                     }
-                    
+                    else{
+                        temp[i].jumlah++
+                    }
+                    localStorage.setItem("cart",JSON.stringify(temp))
+                    this.setState({cart:temp})
                     $("#ph").hide()
+
                 }
                 else if(name==="drop"){
                     
-                    
+                    if(document.getElementsByClassName("one")[i].checked){
+                        temp.map(e=>{
+                            return total+=(e.jumlah*e.harga);
+                        })
+                        this.setState({total:total})
+                    }
                     temp.splice(i,1)
-                    temp.map(e=>{
-                       return total+=(e.jumlah*e.harga);
-                    })
+                   
+                    localStorage.setItem("cart",JSON.stringify(temp))
+                    this.setState({cart:temp})
                     $("#ph").hide()
-                    
+
                 }
-                localStorage.setItem("cart",JSON.stringify(temp))
-                    this.setState({cart:temp,total:total})
+               
             }
             
            
